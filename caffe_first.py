@@ -9,11 +9,17 @@ print(mynet.blobs)
 
 import numpy as np
 
-inp= np.zeros(1,1,100,100)
+inp= np.zeros((1,1,100,100))
 random= np.random.rand(100,100)
 
 inp[0,0]=inp[0,0]+random
-net.blobs['data'].data = inp
-net.forward()
-print(net.blobs['data'])
+print(inp.shape)
+print(mynet.blobs['data'].data.shape)
+print(type(inp))
+print(type(mynet.blobs['data'].data))
+mynet.blobs['data'].reshape(*inp.shape)
+mynet.blobs['data'].data[...] =inp
+#mynet.blobs['data'].data= inp
+mynet.forward()
+print(mynet.blobs['data'].data)
 
